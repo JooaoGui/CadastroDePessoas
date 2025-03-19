@@ -24,7 +24,8 @@ public class PessoaModel {
 
     private String dataNascimento;
 
-    private int idade;
+    @Column(unique = true)
+    private String email;
 
     //@ManyToOne - Uma pessoa tem um unico formulario, com as informações de emprego e salario.
     @ManyToOne
