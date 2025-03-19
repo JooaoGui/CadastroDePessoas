@@ -2,6 +2,9 @@ package dev.javaDB.CadastroDePessoas.Pessoas;
 
 import dev.javaDB.CadastroDePessoas.Formulario.FormularioModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +12,9 @@ import java.util.List;
 //Classe transformada (com Entity) em uma entidade do BD
 @Entity
 @Table(name = "tb_cadastro")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PessoaModel {
 
     @Id
@@ -25,35 +31,7 @@ public class PessoaModel {
     @JoinColumn(name = "formulario_id") // Foreing Key, ou Chave estrangeira
     private FormularioModel formularioModelList;
 
-    public PessoaModel(){}
 
-    public PessoaModel(String nome, String dataNascimento, int idade) {
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.idade = idade;
-    }
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
 }
