@@ -1,6 +1,10 @@
-package dev.javaDB.CadastroDePessoas;
+package dev.javaDB.CadastroDePessoas.Pessoas;
 
+import dev.javaDB.CadastroDePessoas.Formulario.FormularioModel;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //Classe transformada (com Entity) em uma entidade do BD
 @Entity
@@ -11,8 +15,15 @@ public class PessoaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     private String nome;
+
     private String dataNascimento;
+
     private int idade;
+
+    //@ManyToOne - Uma pessoa tem um unico formulario, com as informações de emprego e salario.
+    @ManyToOne
+    @JoinColumn(name = "formulario_id") // Foreing Key, ou Chave estrangeira
+    private FormularioModel formularioModelList;
 
     public PessoaModel(){}
 
