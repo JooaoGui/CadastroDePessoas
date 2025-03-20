@@ -20,6 +20,7 @@ public class PessoaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     private String nome;
 
     private String dataNascimento;

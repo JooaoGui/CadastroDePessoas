@@ -19,8 +19,10 @@ public class FormularioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "emprego")
     private String emprego;
 
+    @Column(name = "salario")
     private int salario;
 
     private PessoaModel pessoa;
