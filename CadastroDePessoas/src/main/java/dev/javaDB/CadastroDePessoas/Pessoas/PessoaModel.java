@@ -31,9 +31,6 @@ public class PessoaModel {
     //@ManyToOne - Uma pessoa tem um unico formulario, com as informações de emprego e salario.
     @ManyToOne
     @JoinColumn(name = "formulario_id") // Foreing Key, ou Chave estrangeira
-    private FormularioModel formularioModelList;
-
-
-
+    private FormularioModel formulario;
 
 }
