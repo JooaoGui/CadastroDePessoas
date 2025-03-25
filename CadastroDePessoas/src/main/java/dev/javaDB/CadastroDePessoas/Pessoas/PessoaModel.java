@@ -22,17 +22,17 @@ public class PessoaModel {
     @Column(name = "id")
     Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
-    @Column(name = "data_nascimento")
+    @Column(name = "data_nascimento", length = 10)
     private String dataNascimento;
 
-    @Column(unique = true)
+    @Column(unique = true, length = 100, nullable = false)
     private String email;
 
     //@ManyToOne - Uma pessoa tem um unico formulario, com as informações de emprego e salario.
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "formulario_id") // Foreing Key, ou Chave estrangeira
     private FormularioModel formulario;
 

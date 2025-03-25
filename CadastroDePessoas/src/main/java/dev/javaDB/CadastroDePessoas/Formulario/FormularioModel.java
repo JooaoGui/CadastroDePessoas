@@ -19,16 +19,13 @@ public class FormularioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "emprego")
+    @Column(name = "emprego", length = 100)
     private String emprego;
 
     @Column(name = "salario")
-    private int salario;
+    private Integer salario;
 
-    private PessoaModel pessoa;
-
-    //@OneToMany - Um formulario(Emprego e Salario) pode conter varias pessoas
-    @OneToMany(mappedBy = "formularioModelList")
-    private List<FormularioModel> pessoas;
-
+    // Relacionamento muitos-para-um: muitos formulários para uma pessoa
+    @OneToMany(mappedBy = "formulario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PessoaModel> pessoas;
 }
