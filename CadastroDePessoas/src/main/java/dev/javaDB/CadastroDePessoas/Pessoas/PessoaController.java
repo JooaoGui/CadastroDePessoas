@@ -3,7 +3,7 @@ package dev.javaDB.CadastroDePessoas.Pessoas;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/pessoas")
 public class PessoaController {
 
     @GetMapping("/boasvindas")
@@ -17,14 +17,14 @@ public class PessoaController {
         return "Pessoa adicionada";
     }
     //Procurar pessoas (READ)
-    @GetMapping("/mostrar")
+    @GetMapping("/listar")
     public String mostrarTodasPessoas(){
-        return "Mostrar pessoa";
+        return "Listar pessoa";
     }
     //Mostrar todas as pessoas pod ID (READ)
-    @GetMapping("/mostrarID")
+    @GetMapping("/ListarID")
     public String mostrarTodasPessoasID(){
-        return "Mostrar pessoa por ID";
+        return "Listar pessoa por ID";
     }
     //Alterar dados das pessoas(UPDATE)
     @PutMapping("/alterar")
