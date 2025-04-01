@@ -16,21 +16,25 @@ public class PessoaController {
     public String adicionarPessoa(){
         return "Pessoa adicionada";
     }
-    //Procurar pessoas (READ)
+
+    //Mostrar pessoas (READ)
     @GetMapping("/listar")
     public String mostrarTodasPessoas(){
         return "Listar pessoa";
     }
-    //Mostrar todas as pessoas pod ID (READ)
+
+    //Mostrar todas as pessoas por ID (READ)
     @GetMapping("/ListarID")
     public String mostrarTodasPessoasID(){
         return "Listar pessoa por ID";
     }
+
     //Alterar dados das pessoas(UPDATE)
     @PutMapping("/alterar")
     public String alterarPorID(){
         return "alterar pessoa por ID";
     }
+
     //Deletar pessoa (DELETE)
     @DeleteMapping("/deletarID")
     public String deletarPorID(){
