@@ -27,14 +27,14 @@ public class PessoaController {
 
     //Mostrar pessoas (READ)
     @GetMapping("/listar")
-    public List<PessoaModel> mostrarTodasPessoas(){
+    public List<PessoaModel> listarPessoas(){
         return pesssoaService.listarPessoas();
     }
 
     //Mostrar todas as pessoas por ID (READ)
-    @GetMapping("/ListarID")
-    public String mostrarTodasPessoasID(){
-        return "Listar pessoa por ID";
+    @GetMapping("/Listar/{id}")
+    public PessoaModel listarPessoasID(@PathVariable Long id){
+        return pesssoaService.listarPessoasID(id);
     }
 
     //Alterar dados das pessoas(UPDATE)
