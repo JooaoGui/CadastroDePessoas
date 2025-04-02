@@ -2,9 +2,17 @@ package dev.javaDB.CadastroDePessoas.Pessoas;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaController {
+
+    private PesssoaService pesssoaService;
+
+    public PessoaController(PesssoaService pesssoaService) {
+        this.pesssoaService = pesssoaService;
+    }
 
     @GetMapping("/boasvindas")
     public String boasVindas(){
@@ -19,8 +27,8 @@ public class PessoaController {
 
     //Mostrar pessoas (READ)
     @GetMapping("/listar")
-    public String mostrarTodasPessoas(){
-        return "Listar pessoa";
+    public List<PessoaModel> mostrarTodasPessoas(){
+        return pesssoaService.listarPessoas();
     }
 
     //Mostrar todas as pessoas por ID (READ)

@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PesssoService {
+public class PesssoaService {
 
     private PessoaRepository pessoaRepository;
 
-    public PesssoService(PessoaRepository pessoaRepository) {
+    public PesssoaService(PessoaRepository pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
     }
 
