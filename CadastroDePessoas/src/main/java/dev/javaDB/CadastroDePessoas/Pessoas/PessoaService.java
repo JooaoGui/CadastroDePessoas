@@ -23,4 +23,8 @@ public class PesssoaService {
         Optional<PessoaModel>listarPessoasID = pessoaRepository.findById(id);
         return listarPessoasID.orElse(null);
     }
+    //Criar nova pessoa
+    public PessoaModel adicionarPessoa(PessoaModel pessoa){
+        return pessoaRepository.save(pessoa);
+    }
 }

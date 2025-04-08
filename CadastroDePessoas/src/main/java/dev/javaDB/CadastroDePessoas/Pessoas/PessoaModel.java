@@ -17,6 +17,11 @@ import java.util.List;
 @AllArgsConstructor
 public class PessoaModel {
 
+    // controle de concorrência
+    @Version
+    private Integer version;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,14 +30,15 @@ public class PessoaModel {
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
-    @Column(name = "data_nascimento", length = 10)
-    private String dataNascimento;
+    // Novo campo
+    @Column(name = "ano_nascimento")
+    private Integer anoNascimento;
 
     @Column(unique = true, length = 100, nullable = false)
     private String email;
 
     //@ManyToOne - Uma pessoa tem um unico formulario, com as informações de emprego e salario.
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) //
     @JoinColumn(name = "formulario_id") // Foreing Key, ou Chave estrangeira
     private FormularioModel formulario;
 
