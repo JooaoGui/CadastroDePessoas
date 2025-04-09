@@ -8,10 +8,10 @@ import java.util.List;
 @RequestMapping("/pessoas")
 public class PessoaController {
 
-    private PesssoaService pesssoaService;
+    private PessoaService pessoaService;
 
-    public PessoaController(PesssoaService pesssoaService) {
-        this.pesssoaService = pesssoaService;
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
     }
 
     @GetMapping("/boasvindas")
@@ -21,20 +21,20 @@ public class PessoaController {
 
     //Adicionar pessoas (CREATE)
     @PostMapping("/adicionar")
-    public String adicionarPessoa(){
-        return "Pessoa adicionada";
+    public PessoaModel adicionarPessoa(@RequestBody PessoaModel pessoa){
+        return pessoaService.adicionarPessoa(pessoa);
     }
 
     //Mostrar pessoas (READ)
     @GetMapping("/listar")
     public List<PessoaModel> listarPessoas(){
-        return pesssoaService.listarPessoas();
+        return pessoaService.listarPessoas();
     }
 
     //Mostrar todas as pessoas por ID (READ)
     @GetMapping("/Listar/{id}")
     public PessoaModel listarPessoasID(@PathVariable Long id){
-        return pesssoaService.listarPessoasID(id);
+        return pessoaService.listarPessoasID(id);
     }
 
     //Alterar dados das pessoas(UPDATE)
