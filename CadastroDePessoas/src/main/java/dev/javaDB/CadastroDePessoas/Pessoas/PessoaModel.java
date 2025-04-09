@@ -1,5 +1,6 @@
 package dev.javaDB.CadastroDePessoas.Pessoas;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.javaDB.CadastroDePessoas.Formulario.FormularioModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,6 +41,7 @@ public class PessoaModel {
     //@ManyToOne - Uma pessoa tem um unico formulario, com as informações de emprego e salario.
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) //
     @JoinColumn(name = "formulario_id") // Foreing Key, ou Chave estrangeira
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private FormularioModel formulario;
 
 }

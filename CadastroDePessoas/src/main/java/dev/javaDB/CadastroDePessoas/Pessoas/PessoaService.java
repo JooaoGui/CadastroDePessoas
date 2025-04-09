@@ -1,17 +1,23 @@
 package dev.javaDB.CadastroDePessoas.Pessoas;
 
+import dev.javaDB.CadastroDePessoas.Formulario.FormularioRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PesssoaService {
+public class PessoaService {
 
-    private PessoaRepository pessoaRepository;
+    private final PessoaRepository pessoaRepository;
+    private final FormularioRepository formularioRepository; // Adicione esta linha
 
-    public PesssoaService(PessoaRepository pessoaRepository) {
+    // Modifica o construtor
+    public PessoaService(PessoaRepository pessoaRepository,
+                         FormularioRepository formularioRepository) {
         this.pessoaRepository = pessoaRepository;
+        this.formularioRepository = formularioRepository; // Injeta o repositório
     }
 
     //Listar todas as pessoas
@@ -24,7 +30,16 @@ public class PesssoaService {
         return listarPessoasID.orElse(null);
     }
     //Criar nova pessoa
-    public PessoaModel adicionarPessoa(PessoaModel pessoa){
-        return pessoaRepository.save(pessoa);
+    public PessoaModel adicionarPessoa(PessoaModel pessoa) {
+        try {
+            // Salva primeiro o formulário se for novo
+            if (pessoa.getFormulario() != null && pessoa.getFormulario().getId() == null) {
+                formularioRepository.save(pessoa.getFormulario());
+            }
+            return pessoaRepository.save(pessoa);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Erro de integridade: " + e.getMostSpecificCause().getMessage());
+        }
     }
+    
 }
