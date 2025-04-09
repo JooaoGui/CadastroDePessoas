@@ -1,6 +1,7 @@
 package dev.javaDB.CadastroDePessoas.Formulario;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.javaDB.CadastroDePessoas.Pessoas.PessoaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,6 @@ public class FormularioModel {
     // Relacionamento muitos-para-um: muitos formulários para uma pessoa
     @OneToMany(mappedBy = "formulario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @JsonIgnoreProperties("formulario")
     private List<PessoaModel> pessoas;
 }
