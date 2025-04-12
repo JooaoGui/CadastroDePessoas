@@ -3,6 +3,7 @@ package dev.javaDB.CadastroDePessoas.Pessoas;
 import dev.javaDB.CadastroDePessoas.Formulario.FormularioRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
     //Listar todas as pessoas por ID
+    @Transactional
     public PessoaModel listarPessoasID(Long id){
         Optional<PessoaModel>listarPessoasID = pessoaRepository.findById(id);
         return listarPessoasID.orElse(null);
@@ -40,6 +42,11 @@ public class PessoaService {
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Erro de integridade: " + e.getMostSpecificCause().getMessage());
         }
+    }
+    //Deletar Pessoa
+    @Transactional
+    public void deletarPorID(Long id) {
+        pessoaRepository.deleteById(id);
     }
     
 }
